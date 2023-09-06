@@ -1,0 +1,80 @@
+name: 'Test and deploy'
+
+env: # Keep this in sync with Dockerfile version
+  NODE_VERSION: "18.17.1"
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    types: [ opened, synchronize ]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: 'Lint'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: 'Install'
+        run: npm install
+
+      - name: 'Lint'
+        run: npm run lint
+        env:
+          NODE_OPTIONS: '--max-old-space-size=8192'
+
+
+  test:
+    name: 'Test'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: 'Install'
+        run: npm install
+
+      - name: 'Test'
+        run: npm run test:ci
+
+      - name: 'Upload test results'
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: Test Results
+          path: junit.xml
+
+  # Upload event file so test results can be processed for the PR
+  # https://github.com/EnricoMi/publish-unit-test-result-action#support-fork-repositories-and-dependabot-branches
+  event_file:
+    name: "Event File"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: Event File
+          path: ${{ github.event_path }}
