@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve app",
+    "prebuild": "node bin/prebuild.js",
     "build": "ng build app",
     "watch": "ng build --watch --configuration development app",
     "start-admin": "ng serve admin-app --port=4201",
