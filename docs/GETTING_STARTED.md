@@ -17,7 +17,7 @@ Next we want to register this component with Tailormap. To do that we need to us
 constructor(
   mapControlsService: MapControlsService,
 ) {
-  mapControlsService.registerComponent(LogoOnMapComponent);
+  mapControlsService.registerComponent({ type: 'LOGO_ON_MAP', component: LogoOnMapComponent });
 }
 ```
 
@@ -54,7 +54,7 @@ export class AppModule {
   constructor(
     mapControlsService: MapControlsService,
   ) {
-    mapControlsService.registerComponent(LogoOnMapComponent);
+    mapControlsService.registerComponent({ type: 'LOGO_ON_MAP', component: LogoOnMapComponent });
   }
 }
 ```
@@ -74,7 +74,7 @@ p {
 }
 ```
 
-Now run the application using `npm run start` and visit `http://localhost:4200` in your browser. If everything went as planned you should see the Tailormap viewer and our new component in the right-bottom corner. 
+Now run the application using `npm run start` and visit `http://localhost:4200` in your browser. If everything went as planned you should see the Tailormap viewer and our new component in the right-bottom corner.
 
 ### Implement your component
 
