@@ -18,6 +18,7 @@ import { AdminCoreModule, AdminCoreRoutingModule } from '@tailormap-admin/admin-
       viewerBaseUrl: environment.viewerBaseUrl,
     }),
     AdminCoreRoutingModule,
+    ...environment.imports,
   ],
   providers: [],
   bootstrap: [AppComponent],
