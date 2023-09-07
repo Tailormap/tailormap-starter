@@ -166,7 +166,21 @@
               "node_modules/@tailormap-viewer/core/assets/tailormap-styles.css",
               "node_modules/@tailormap-admin/admin-core/assets/tailormap-admin-styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "xml-utils",
+              "pbf",
+              "html2canvas",
+              "core-js",
+              "raf",
+              "rgbcolor",
+              "lru-cache",
+              "web-worker",
+              "dompurify",
+              "rbush",
+              "cssesc",
+              "font-family-papandreou"
+            ]
           },
           "configurations": {
             "production": {
