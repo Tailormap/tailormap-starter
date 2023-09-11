@@ -119,7 +119,7 @@ jobs:
 
       - name: 'Build image'
         # Always uses the 'snapshot' tag of the tailormap-api base image by setting the API_VERSION build arg
-        run: docker build --progress plain --build-arg VERSION=${VERSION} --build-arg API_VERSION=snapshot --tag ${{ vars.DEPLOY_IMAGE_TAG }}:${VERSION} --output type=local,dest=image.tar .
+        run: docker build --progress plain --build-arg VERSION=${VERSION} --build-arg API_VERSION=snapshot --tag ${{ vars.DEPLOY_IMAGE_TAG }}:${VERSION} --output type=tar,dest=image.tar .
 
       - name: 'Set Docker context for deployment'
         uses: arwynfr/actions-docker-context@v2
