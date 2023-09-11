@@ -135,9 +135,13 @@ jobs:
           DEPLOY_DOCKER_HOST=${{ secrets.DEPLOY_DOCKER_HOST }}
           ssh-keyscan -H ${DEPLOY_DOCKER_HOST##*@} > $HOME/.ssh/known_hosts
 
+      - name: 'Copy Docker image tarball'
+        run: |
+          scp -C image.tar github-docker-actions@h03.b3p.nl:/tmp
+
       - name: 'Load Docker image'
         run: |
-          docker load --input image.tar
+          docker load --input /tmp/image.tar
 
       - uses: actions/checkout@v4
         with:
