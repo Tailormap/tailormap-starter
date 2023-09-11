@@ -248,6 +248,15 @@
           "options": {
             "browserTarget": "admin-app:build"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/admin-app/**/*.ts",
+              "projects/admin-app/**/*.html"
+            ]
+          }
         }
       }
     }
