@@ -155,6 +155,7 @@ jobs:
           TAILORMAP_IMAGE: ${{ vars.DEPLOY_IMAGE_TAG }}
         run: |
           cd tailormap-viewer
+          echo TAILORMAP_IMAGE=${TAILORMAP_IMAGE} > .env
           docker compose config
           docker compose up -d
 
