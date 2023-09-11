@@ -139,6 +139,7 @@ jobs:
 
       - name: 'Load Docker image'
         run: |
+          docker image rm ${{ vars.DEPLOY_IMAGE_TAG }}:${VERSION} || true
           cat image.tar | docker load
 
       - uses: actions/checkout@v4
@@ -150,6 +151,8 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: 'Update deployment using Docker Compose'
+        env:
+          TAILORMAP_IMAGE: ${{ vars.DEPLOY_IMAGE_TAG }}
         run: |
           cd tailormap-viewer
           docker compose config

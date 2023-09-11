@@ -48,7 +48,7 @@ path.
 - `DEPLOY_PROJECT_NAME`: Name of your customized project, used for docker image and container name (a-z)
 - `ADMIN_HASHED_PASSWORD`: Hashed password of the tm-admin account, created when the Tailormap configuration database is empty (only the
   first deployment unless you remove the volume manually). Generate with Spring CLI: ` docker run --rm rocko/spring-boot-cli-docker spring encodepassword "[your password]"`.
-- `DEPLOY_IMAGE_TAG`: Tag for Docker image (without version), for example `ghcr.io/b3partners/tailormap-viewer`. The image is built in a GitHub Actions worker and uploaded to the server -- it is not pushed to
+- `DEPLOY_IMAGE_TAG`: Tag for Docker image (without version), for example `ghcr.io/b3partners/tailormap-starter`. The image is built in a GitHub Actions worker and uploaded to the server -- it is not pushed to
   a registry. The version used is `snapshot` for deployments for the main `branch` and `pr-nn` for pull request deployments.
 
 Add the following as GitHub secrets:
