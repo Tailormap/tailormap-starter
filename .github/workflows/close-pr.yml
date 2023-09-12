@@ -14,8 +14,10 @@ jobs:
       - name: 'Set variables for PR'
         env:
           PR: ${{ github.event.pull_request.number }}
+          PROJECT_NAME: ${{ vars.DEPLOY_PROJECT_NAME }}
         run: |
           echo "VERSION_TAG=pr-${PR}" >> $GITHUB_ENV
+          echo "COMPOSE_PROJECT_NAME=${PROJECT_NAME}-pr-${PR} >> $GITHUB_ENV
 
       - uses: arwynfr/actions-docker-context@v2
         with:
@@ -41,12 +43,12 @@ jobs:
       - name: 'Remove pull request deployment and image'
         env:
           COMPOSE_FILE: docker-compose.yml:docker-compose.traefik.yml:ci/docker-compose.pr.yml
-          COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}-pr-${PR}
           VERSION: ${{ env.VERSION_TAG }}
+          TAILORMAP_IMAGE: ${{ vars.DEPLOY_IMAGE_TAG }}
         run: |
           cd tailormap-viewer
           docker compose config
-          docker compose down --rmi all --remove-orphans
+          docker compose down --rmi all --volumes --remove-orphans
 
       - name: 'Remove GitHub deployment and environment'
         if: ${{ always() }}
