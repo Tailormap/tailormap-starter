@@ -28,3 +28,38 @@ version matches the NPM packages you use in this Angular app.
 You can run your customized Tailormap container separately or using the Docker (Compose) configuration in tailormap-viewer. For Docker
 Compose, specify your custom image and tag in the `TAILORMAP_IMAGE` and `VERSION` variables in an environment file (see the README of
 tailormap-viewer and its `.env.template` for details).
+
+# Setting up continuous deployment
+
+To add continuous deployment, you need a server with Docker and Traefik configured with `--providers.docker` and a Let's Encrypt certificate
+resolver named `letsencrypt`. Generate an SSH keypair and add the public key to the `~/.ssh/authorized_keys` file for an account that has
+Docker access. Assign a hostname for the deployments to this server.
+
+You can use different SSH keypairs for different deployments. Just add more public keys to the `authorized_keys` file.
+
+Add these repository variables in GitHub to enable deployment.
+
+Like the continuous deployment in `tailormap-viewer`, the Tailormap API backend will only be deployed for the `main` branch and pull request
+deployments will only serve the static Angular frontend on a different base path which will use the API for the main deployment on the `/api`
+path.
+
+- `DEPLOY`: set to `true`
+- `DEPLOY_HOSTNAME`: set to hostname for the server
+- `DEPLOY_PROJECT_NAME`: Name of your customized project, used for docker image and container name (a-z)
+- `ADMIN_HASHED_PASSWORD`: Hashed password of the tm-admin account, created when the Tailormap configuration database is empty (only the
+  first deployment unless you remove the volume manually). Generate with Spring CLI: ` docker run --rm rocko/spring-boot-cli-docker spring encodepassword "[your password]"`.
+- `DEPLOY_IMAGE_TAG`: Tag for Docker image (without version), for example `ghcr.io/b3partners/tailormap-starter`. The image is built in a GitHub Actions worker and uploaded to the server -- it is not pushed to
+  a registry. The version used is `snapshot` for deployments for the main `branch` and `pr-nn` for pull request deployments.
+
+Add the following as GitHub secrets:
+
+- `DEPLOY_DOCKER_HOST`: something like `ssh://github-docker-actions@your.server.com`
+- `DEPLOY_DOCKER_HOST_SSH_CERT`: the public part of the SSH key as added to `authorized_keys`, something like `ssh-rsa AAAAB3NzaC1yc2EAA(...)ei3Uv4zj9/8M= user@host`
+- `DEPLOY_DOCKER_HOST_SSH_KEY`: the private part of the SSH key, without passphrase, something like:
+
+```
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAA...
+...
+-----END OPENSSH PRIVATE KEY-----
+```
