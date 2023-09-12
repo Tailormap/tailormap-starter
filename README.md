@@ -56,6 +56,7 @@ Add the following as GitHub secrets:
 - `DEPLOY_DOCKER_HOST`: something like `ssh://github-docker-actions@your.server.com`
 - `DEPLOY_DOCKER_HOST_SSH_CERT`: the public part of the SSH key as added to `authorized_keys`, something like `ssh-rsa AAAAB3NzaC1yc2EAA(...)ei3Uv4zj9/8M= user@host`
 - `DEPLOY_DOCKER_HOST_SSH_KEY`: the private part of the SSH key, without passphrase, something like:
+- `REMOVE_DEPLOYMENT_GITHUB_TOKEN`: a GitHub personal access token that has repository permissions to remove a deployment
 
 ```
 -----BEGIN OPENSSH PRIVATE KEY-----

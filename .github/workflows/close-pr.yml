@@ -17,7 +17,7 @@ jobs:
           PROJECT_NAME: ${{ vars.DEPLOY_PROJECT_NAME }}
         run: |
           echo "VERSION_TAG=pr-${PR}" >> $GITHUB_ENV
-          echo "COMPOSE_PROJECT_NAME=${PROJECT_NAME}-pr-${PR} >> $GITHUB_ENV
+          echo "COMPOSE_PROJECT_NAME=${PROJECT_NAME}-pr-${PR}" >> $GITHUB_ENV
 
       - uses: arwynfr/actions-docker-context@v2
         with:
@@ -54,6 +54,6 @@ jobs:
         if: ${{ always() }}
         uses: strumwolf/delete-deployment-environment@v2
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.REMOVE_DEPLOYMENT_GITHUB_TOKEN }}"
           environment: "${{ env.VERSION_TAG }}"
 
