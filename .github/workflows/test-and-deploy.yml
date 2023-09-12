@@ -158,13 +158,13 @@ jobs:
           docker compose config
           docker compose up -d
 
-#      - name: 'Create GitHub deployment'
-#        if: success()
-#        uses: chrnorm/deployment-action@v2
-#        with:
-#          token: "${{ secrets.GITHUB_TOKEN }}"
-#          environment-url: "https://${{ secrets.DEPLOY_HOST }}${{ env.BASE_HREF}}"
-#          description: "Deployment for ${{ env.VERSION }}"
-#          environment: ${{ env.VERSION }}
-#          initial-status: success
-#          ref: "${{ env.GITHUB_HEAD_REF }}"
+      - name: 'Create GitHub deployment'
+        if: success()
+        uses: chrnorm/deployment-action@v2
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          environment-url: "https://${{ vars.DEPLOY_HOSTNAME }}${{ env.BASE_HREF }}"
+          description: "Deployment for ${{ env.VERSION }}"
+          environment: ${{ env.VERSION }}
+          initial-status: success
+          ref: "${{ env.GITHUB_HEAD_REF }}"
