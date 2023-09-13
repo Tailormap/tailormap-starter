@@ -57,5 +57,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           environment: test
           onlyRemoveDeployments: true
-          ref: ${{ env.GITHUB_HEAD_REF }}
+          ref: ${{ env.VERSION_TAG }}
 
