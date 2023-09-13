@@ -30,14 +30,6 @@
         ]
       },
       "rules": {
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "tm",
-            "style": "kebab-case"
-          }
-        ],
         "@typescript-eslint/no-explicit-any": "off",
         "@angular-eslint/directive-selector": [
           "error",
