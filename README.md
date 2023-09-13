@@ -1,6 +1,26 @@
 # Tailormap Starter project
 
-This is a starter project to extend the Tailormap viewer with extra functionality. Fork this repository to get started! Remember to [keep your fork in sync](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
+This is a starter project to extend the Tailormap viewer with extra functionality. You can fork this repository to get started!
+
+## Public extensions
+
+You can create a fork of this project to create a public repository with your extensions. Remember to [keep your fork in sync](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). to get
+updates from this repository (this may include dependency or other updates).
+
+## Closed source extensions
+The license of this project and dependencies allows closed-source modifications. You can create a new _private_ repository using this as a
+template. To keep your private repository in sync, add a new Git remote to this repository and merge changes. Note that even if you create a
+private repository, if you deploy the result online anyone can see the JavaScript source code (and TypeScript source maps are available by
+default, although you can change that in angular.json).
+
+## Keeping in sync
+
+You can keep in sync by following new releases of the NPM packages of the Angular frontend, using [dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/about-dependabot-version-updates)
+for example. To keep up-to-date with the Tailormap API, change the version of the tailormap-api docker base image. The default Tailormap API
+version in the Dockerfile is set to 'snapshot', which is updated on each commit to the main branch. You may want to set this to a released
+version and use something like [Renovate](https://www.mend.io/renovate/) to keep up-to-date with new releases.
+
+## Developing extensions
 
 See [tailormap-viewer](https://github.com/B3Partners/tailormap-viewer/) for details.
 
