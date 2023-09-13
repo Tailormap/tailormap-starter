@@ -167,4 +167,4 @@ jobs:
           description: "Deployment for ${{ env.VERSION }}"
           environment: test
           initial-status: success
-          ref: ${{ env.VERSION }}
+          ref: "${{ env.GITHUB_HEAD_REF }}"

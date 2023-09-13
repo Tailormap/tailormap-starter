@@ -50,12 +50,15 @@ jobs:
           docker compose config
           docker compose down --rmi all --volumes --remove-orphans
 
+      - name: 'GitHub Slug Action'
+        uses: rlespinasse/github-slug-action@v4
+
       - name: 'Remove GitHub deployment and environment'
         if: ${{ always() }}
         uses: strumwolf/delete-deployment-environment@v2.3.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: "${{ secrets.GITHUB_TOKEN }}"
           environment: test
           onlyRemoveDeployments: true
-          ref: ${{ env.VERSION_TAG }}
+          ref: "${{ env.GITHUB_HEAD_REF }}"
 
