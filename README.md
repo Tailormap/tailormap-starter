@@ -37,11 +37,11 @@ Docker access. Assign a hostname for the deployments to this server.
 
 You can use different SSH keypairs for different deployments. Just add more public keys to the `authorized_keys` file.
 
-Add these repository variables in GitHub to enable deployment.
+Add the repository variables below in GitHub to enable continuous deployment.
 
 Like the continuous deployment in `tailormap-viewer`, the Tailormap API backend will only be deployed for the `main` branch and pull request
 deployments will only serve the static Angular frontend on a different base path which will use the API for the main deployment on the `/api`
-path.
+path. The deployments will be added to the GitHub environment named 'test'.
 
 - `DEPLOY`: set to `true`
 - `DEPLOY_HOSTNAME`: set to hostname for the server
@@ -56,7 +56,6 @@ Add the following as GitHub secrets:
 - `DEPLOY_DOCKER_HOST`: something like `ssh://github-docker-actions@your.server.com`
 - `DEPLOY_DOCKER_HOST_SSH_CERT`: the public part of the SSH key as added to `authorized_keys`, something like `ssh-rsa AAAAB3NzaC1yc2EAA(...)ei3Uv4zj9/8M= user@host`
 - `DEPLOY_DOCKER_HOST_SSH_KEY`: the private part of the SSH key, without passphrase, something like:
-- `REMOVE_DEPLOYMENT_GITHUB_TOKEN`: a GitHub personal access token that has repository permissions to remove a deployment
 
 ```
 -----BEGIN OPENSSH PRIVATE KEY-----

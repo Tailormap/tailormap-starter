@@ -165,6 +165,6 @@ jobs:
           token: "${{ secrets.GITHUB_TOKEN }}"
           environment-url: "https://${{ vars.DEPLOY_HOSTNAME }}${{ env.BASE_HREF }}"
           description: "Deployment for ${{ env.VERSION }}"
-          environment: ${{ env.VERSION }}
+          environment: test
           initial-status: success
           ref: "${{ env.GITHUB_HEAD_REF }}"
