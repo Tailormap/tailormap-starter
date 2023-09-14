@@ -1,17 +1,16 @@
 # Tailormap Starter project
 
-This is a starter project to extend the Tailormap viewer with extra functionality. You can fork this repository to get started!
+Use this project when you want to extend the Tailormap viewer with extra functionality. You can fork this repository to get started!
 
 ## Public extensions
-
-You can create a fork of this project to create a public repository with your extensions. Remember to [keep your fork in sync](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). to get
+You can create a fork of this project to create a public repository with your extensions. Remember to [keep your fork in sync](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) to get
 updates from this repository (this may include dependency or other updates).
 
 ## Closed source extensions
-The license of this project and dependencies allows closed-source modifications. You can create a new _private_ repository using this as a
-template. To keep your private repository in sync, add a new Git remote to this repository and merge changes. Note that even if you create a
-private repository, if you deploy the result online anyone can see the JavaScript source code (and TypeScript source maps are available by
-default, although you can change that in angular.json).
+The license of this project and dependencies allows closed-source modifications and extensions. You can create a new _private_ repository
+using this as a template. To keep your private repository in sync, add a new Git remote to this repository and merge changes from the
+remote. Note that even if you create a private repository, if you deploy the result online anyone can see and try to de-obfuscate the
+JavaScript source code and TypeScript source maps are available by default (you can change that in angular.json).
 
 ## Keeping in sync
 
@@ -33,7 +32,7 @@ See the documentation of [tailormap-viewer](https://github.com/B3Partners/tailor
 ## Building a Docker image
 
 Choose a container name for your customized Tailormap and the API version you want to use. If you use `snapshot` or `latest` (tags that get
-newer images) you'll want to `docker pull` that image first:
+updated with newer images) you'll want to `docker pull` that image first:
 
 Build your Docker image as follows:
 
@@ -43,9 +42,9 @@ docker build --build-arg API_VERSION=snapshot -t my-organisation/tailormap-my-cu
 ```
 
 You may want to use other values for `API_VERSION` to use a specific Tailormap API version and the image tag. Make sure the Tailormap API
-version matches the NPM packages you use in this Angular app.
+version matches what the NPM packages you use in this Angular app expect.
 
-You can run your customized Tailormap container separately or using the Docker (Compose) configuration in tailormap-viewer. For Docker
+You can run your customized Tailormap container separately or using the Docker Compose configuration in tailormap-viewer. For Docker
 Compose, specify your custom image and tag in the `TAILORMAP_IMAGE` and `VERSION` variables in an environment file (see the README of
 tailormap-viewer and its `.env.template` for details).
 
@@ -53,7 +52,7 @@ tailormap-viewer and its `.env.template` for details).
 
 To add continuous deployment, you need a server with Docker and Traefik configured with `--providers.docker` and a Let's Encrypt certificate
 resolver named `letsencrypt`. Generate an SSH keypair and add the public key to the `~/.ssh/authorized_keys` file for an account that has
-Docker access. Assign a hostname for the deployments to this server.
+Docker access on your server. Assign a hostname for the deployments to this server.
 
 You can use different SSH keypairs for different deployments. Just add more public keys to the `authorized_keys` file.
 
@@ -64,10 +63,9 @@ deployments will only serve the static Angular frontend on a different base path
 path. The deployments will be added to the GitHub environment named 'test'.
 
 - `DEPLOY`: set to `true`
-- `DEPLOY_HOSTNAME`: set to hostname for the server
-- `DEPLOY_PROJECT_NAME`: Name of your customized project, used for docker image and container name (a-z)
-- `ADMIN_HASHED_PASSWORD`: Hashed password of the tm-admin account, created when the Tailormap configuration database is empty (only the
-  first deployment unless you remove the volume manually). Generate with Spring CLI: ` docker run --rm rocko/spring-boot-cli-docker spring encodepassword "[your password]"`.
+- `DEPLOY_HOSTNAME`: the hostname where Tailormap should run on, which points to the server
+- `DEPLOY_PROJECT_NAME`: name of your customized project, used for docker image and container name (a-z)
+- `ADMIN_HASHED_PASSWORD`: Hashed password of the `tm-admin` account created when deploying the first time
 - `DEPLOY_IMAGE_TAG`: Tag for Docker image (without version), for example `ghcr.io/b3partners/tailormap-starter`. The image is built in a GitHub Actions worker and uploaded to the server -- it is not pushed to
   a registry. The version used is `snapshot` for deployments for the main `branch` and `pr-nn` for pull request deployments.
 
@@ -83,3 +81,17 @@ b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAA...
 ...
 -----END OPENSSH PRIVATE KEY-----
 ```
+## GitHub Actions workflow security
+
+Be sure to check the settings of your repository so that if you accept pull requests not everybody can run a modified workflow file to
+exfiltrate the private key and use your server.
+
+## Logging in after first deployment
+
+When Tailormap is deployed for the main branch for the first time, the database tables are created and an admin account is created. By
+setting the `ADMIN_HASHED_PASSWORD` variable you can configure the password for the `tm-admin` account so you can login to the admin (go to
+`/admin/`). You can generate a hash with Spring CLI: ` docker run --rm rocko/spring-boot-cli-docker spring encodepassword "[your password]"`.
+You can leave this variable empty but after the first deployment you'll need to check the Tailormap server logs for the account details or
+reset the password as described in the README of tailormap-viewer.
+
+When you've successfully logged in to the admin you can start filling the catalog and configuring a Tailormap application.

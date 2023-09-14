@@ -8,6 +8,7 @@ jobs:
   cleanup:
     name: 'Remove Docker Compose deployment'
     runs-on: ubuntu-22.04
+    if: vars.DEPLOY == 'true'
     steps:
       - uses: actions/checkout@v4
 
