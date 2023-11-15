@@ -14,7 +14,10 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    CoreModule,
+    CoreModule.forRoot({
+      production: environment.production,
+      viewerBaseUrl: environment.viewerBaseUrl,
+    }),
     CoreRoutingModule,
     SharedModule,
     ...environment.imports,
