@@ -12,12 +12,16 @@ if (appendNpmRc) {
 }
 
 const addNgLibraries = process.env['ADD_NG_LIBRARIES'];
+const addedPackages = [];
 if (addNgLibraries) {
   addNgLibraries.split(' ').forEach(library => {
     console.log('Adding Angular library: ' + library);
     try {
       const output = execSync('npx ng add --skip-confirmation ' + library);
       console.log(output.toString());
+      const idx = library.lastIndexOf('@');
+      const packageName = idx > 0 ? library.substring(0, idx) : library;
+      addedPackages.push(packageName);
     } catch(error) {
       // Stderr from execSync() is already piped to stderr, so error is output already
       console.error('Error installing library');
@@ -25,3 +29,5 @@ if (addNgLibraries) {
     }
   });
 }
+writeFileSync('./added-packages.json', JSON.stringify(addedPackages, null, 4));
+
