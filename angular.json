@@ -141,9 +141,19 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ng-extract-i18n-merge:ng-extract-i18n-merge",
+          "configurations": {},
           "options": {
-            "browserTarget": "app:build"
+            "browserTarget": "app:build",
+            "format": "xlf",
+            "outputPath": "locale",
+            "sourceFile": "messages.en.xlf",
+            "verbose": false,
+            "resetTranslationState": false,
+            "sort": "idAsc",
+            "targetFiles": [
+              "messages.nl.xlf"
+            ]
           }
         },
         "lint": {
