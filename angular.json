@@ -77,7 +77,8 @@
               "cssesc",
               "font-family-papandreou",
               "earcut"
-            ]
+            ],
+            "i18nMissingTranslation": "error"
           },
           "configurations": {
             "nl": {
