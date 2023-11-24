@@ -1,6 +1,6 @@
 import 'jest-preset-angular/setup-jest';
 import './projects/app/src/polyfills';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
 window.ResizeObserver =
   window.ResizeObserver ||

@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   viewerBaseUrl: 'http://localhost:4200/app/',
   imports: [
-    StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, connectInZone: true }),
   ],
 };
 
