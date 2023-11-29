@@ -11,17 +11,17 @@ npm run ng -- g c logo-on-map
 
 This will create a new component inside the `projects/app/src/app/logo-on-map` directory
 
-Next we want to register this component with Tailormap. To do that we need to use one of the entry points that Tailormap provides (see the Tailormap API docs). Here we are adding something on the map, so we will use the `MapControlsService` to register our component. We will add this in the `app.module.ts`. Add the following code to `app.module.ts` inside the `AppModule` class
+Next we want to register this component with Tailormap. To do that we need to use one of the entry points that Tailormap provides (see the Tailormap API docs). Here we are adding something on the map, so we will use the `ComponentRegistrationService` to register our component on the 'map' area. We will add this in the `app.module.ts`. Add the following code to `app.module.ts` inside the `AppModule` class
 
 ```
 constructor(
-  mapControlsService: MapControlsService,
+  componentRegistrationService: ComponentRegistrationService,
 ) {
-  mapControlsService.registerComponent({ type: 'LOGO_ON_MAP', component: LogoOnMapComponent });
+  componentRegistrationService.registerComponent('map', { type: 'LOGO_ON_MAP', component: LogoOnMapComponent });
 }
 ```
 
-You will also need to add `MapControlsService` to the `@tailormap-viewer/core` imports
+You will also need to add `ComponentRegistrationService` to the `@tailormap-viewer/core` imports
 
 Your file should now look like:
 
@@ -30,7 +30,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { CoreModule, CoreRoutingModule, MapControlsService } from "@tailormap-viewer/core";
+import { CoreModule, CoreRoutingModule, ComponentRegistrationService } from "@tailormap-viewer/core";
 import { SharedModule } from "@tailormap-viewer/shared";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LogoOnMapComponent } from './logo-on-map/logo-on-map.component';
@@ -52,9 +52,9 @@ import { LogoOnMapComponent } from './logo-on-map/logo-on-map.component';
 })
 export class AppModule {
   constructor(
-    mapControlsService: MapControlsService,
+    componentRegistrationService: ComponentRegistrationService,
   ) {
-    mapControlsService.registerComponent({ type: 'LOGO_ON_MAP', component: LogoOnMapComponent });
+    componentRegistrationService.registerComponent('map', { type: 'LOGO_ON_MAP', component: LogoOnMapComponent });
   }
 }
 ```
@@ -112,7 +112,7 @@ export class LogoOnMapComponent implements OnInit {
 
   public ngOnInit(): void {
     // Lookup the address for B3Partners HQ using the 'PDOK locatieserver'
-    const url = 'https://geodata.nationaalgeoregister.nl/locatieserver/v3/free?q=Zonnebaan%2012C,%203542%20EC%20Utrecht&rows=1&fl=id,bron,weergavenaam,type,centroide_rd,centroide_ll&fq=*';
+    const url = 'https://geodata.nationaalgeoregister.nl/locatieserver/v3/free?q=Atoomweg%2050,%203542%20AB%20Utrecht&rows=1&fl=id,bron,weergavenaam,type,centroide_rd,centroide_ll&fq=*';
     this.imgStyle$ = this.httpClient.get<LocationServerResponseType>(url)
       .pipe(
         switchMap(result => {
