@@ -4,7 +4,7 @@ const fs = require('fs');
 
 function getPackageVersion(packageName) {
   try {
-    return require('../node_modules/' + packageName + '/package.json').version;
+    return require(path.resolve(__dirname, '../node_modules/', packageName, 'package.json')).version;
   } catch(error) {
     return undefined;
   }
@@ -12,7 +12,7 @@ function getPackageVersion(packageName) {
 
 function getAddedPackagesWithVersion() {
   try {
-    const packages = require('../added-packages.json');
+    const packages = require(path.resolve(__dirname, '../added-packages.json'));
     return packages.map(packageName => {
       return { name: packageName, version: getPackageVersion(packageName) };
     });
