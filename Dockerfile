@@ -1,5 +1,5 @@
 ARG BUILDPLATFORM=linux/amd64
-ARG VERSION=snapshot
+ARG API_VERSION=snapshot
 
 FROM node:18.17.1 AS builder
 
@@ -18,6 +18,6 @@ COPY . /app
 RUN node ./bin/add-ng-libraries.js
 RUN npm run build-localized -- --base-href=${BASE_HREF}
 
-FROM --platform=$BUILDPLATFORM ghcr.io/b3partners/tailormap-api:${VERSION}
+FROM --platform=$BUILDPLATFORM ghcr.io/b3partners/tailormap-api:${API_VERSION}
 
 COPY --from=builder /app/dist/app static/
