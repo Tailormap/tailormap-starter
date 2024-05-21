@@ -156,7 +156,7 @@ jobs:
         run: |
           cd tailormap-viewer
           docker compose config
-          docker compose up -d
+          docker compose up -d --remove-orphans
 
       - name: 'Create GitHub deployment'
         if: success()
