@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: weekly
+      day: monday
+      time: '21:00'
+      timezone: 'Europe/Amsterdam'
+    labels:
+      - infrastructure
+
+  - package-ecosystem: docker
+    directory: '/'
+    schedule:
+      interval: weekly
+      day: monday
+      time: '21:00'
+      timezone: 'Europe/Amsterdam'
+    target-branch: main
+    labels:
+      - infrastructure
+    ignore:
+      - dependency-name: node
+        versions:
+          - '>= 21'
