@@ -37,7 +37,7 @@ updated with newer images) you'll want to `docker pull` that image first:
 Build your Docker image as follows:
 
 ```
-docker pull ghcr.io/b3partners/tailormap-api:snapshot
+docker pull ghcr.io/tailormap/tailormap-api:snapshot
 docker build --build-arg API_VERSION=snapshot -t my-organisation/tailormap-my-custom-version:snapshot .
 ```
 
@@ -66,7 +66,7 @@ path. The deployments will be added to the GitHub environment named 'test'.
 - `DEPLOY_HOSTNAME`: the hostname where Tailormap should run on, which points to the server
 - `DEPLOY_PROJECT_NAME`: name of your customized project, used for docker image and container name (a-z)
 - `ADMIN_HASHED_PASSWORD`: Hashed password of the `tm-admin` account created when deploying the first time
-- `DEPLOY_IMAGE_TAG`: Tag for Docker image (without version), for example `ghcr.io/b3partners/tailormap-starter`. The image is built in a GitHub Actions worker and uploaded to the server -- it is not pushed to
+- `DEPLOY_IMAGE_TAG`: Tag for Docker image (without version), for example `ghcr.io/tailormap/tailormap-starter`. The image is built in a GitHub Actions worker and uploaded to the server -- it is not pushed to
   a registry. The version used is `snapshot` for deployments for the main `branch` and `pr-nn` for pull request deployments.
 
 Add the following as GitHub secrets:
