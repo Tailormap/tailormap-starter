@@ -142,7 +142,6 @@ jobs:
 
       - name: 'Load Docker image'
         run: |
-          docker image rm ${{ vars.DEPLOY_IMAGE_TAG }}:${VERSION} || true
           cat image.tar | docker load
 
       - uses: actions/checkout@v4
