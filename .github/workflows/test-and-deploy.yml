@@ -85,7 +85,7 @@ jobs:
     permissions:
       deployments: write
     runs-on: ubuntu-22.04
-    if: vars.DEPLOY == 'true'
+    if: vars.DEPLOY == 'true' && ${{ github.author != 'dependabot[bot]' }}
     env:
       VERSION: snapshot
       COMPOSE_PROJECT_NAME: ${{ vars.DEPLOY_PROJECT_NAME }}-snapshot
