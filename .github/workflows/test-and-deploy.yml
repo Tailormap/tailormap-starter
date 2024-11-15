@@ -1,7 +1,7 @@
 name: 'Test and deploy'
 
 env: # Keep this in sync with Dockerfile version
-  NODE_VERSION: "20.17.0"
+  NODE_VERSION: "22.11.0"
 
 on:
   push:
@@ -83,6 +83,8 @@ jobs:
   build:
     name: 'Build and deploy'
     permissions:
+      contents: read
+      pull-requests: read
       deployments: write
     runs-on: ubuntu-22.04
     if: vars.DEPLOY == 'true' && ${{ github.author != 'dependabot[bot]' }}
