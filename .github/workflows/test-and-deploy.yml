@@ -11,8 +11,9 @@ jobs:
   deploy:
     uses: Tailormap/tailormap-tools/.github/workflows/reusable-deploy.yml@main
     permissions:
+      checks: write
       contents: read
-      pull-requests: read
+      pull-requests: write
       deployments: write
     with:
       environment: ''
