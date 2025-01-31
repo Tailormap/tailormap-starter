@@ -1,8 +1,6 @@
 {
-  "coreProjectLocation": "node_modules/@tailormap-viewer/core",
   "libraries": [
   ],
   "apps": [
-    "app"
   ]
 }
