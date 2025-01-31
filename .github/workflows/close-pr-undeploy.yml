@@ -1,19 +1,16 @@
-name: 'Test and deploy'
+name: 'Remove deployment'
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    types: [ opened, synchronize ]
-  workflow_dispatch:
+    types: [ closed ]
 
 jobs:
-  deploy:
-    uses: Tailormap/tailormap-tools/.github/workflows/reusable-deploy.yml@main
+  cleanup:
+    uses: Tailormap/tailormap-tools/.github/workflows/reusable-undeploy.yml@main
     with:
       environment: ''
     secrets:
       DEPLOY_DOCKER_HOST: ${{ secrets.DEPLOY_DOCKER_HOST }}
       DEPLOY_DOCKER_HOST_SSH_CERT: ${{ secrets.DEPLOY_DOCKER_HOST_SSH_CERT }}
       DEPLOY_DOCKER_HOST_SSH_KEY: ${{ secrets.DEPLOY_DOCKER_HOST_SSH_KEY }}
-      SOURCE_MAP_AUTH: ${{ secrets.SOURCE_MAP_AUTH }}
+
