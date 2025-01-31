@@ -15,8 +15,6 @@ jobs:
       contents: read
       pull-requests: write
       deployments: write
-    with:
-      environment: ''
     secrets:
       DEPLOY_DOCKER_HOST: ${{ secrets.DEPLOY_DOCKER_HOST }}
       DEPLOY_DOCKER_HOST_SSH_CERT: ${{ secrets.DEPLOY_DOCKER_HOST_SSH_CERT }}
