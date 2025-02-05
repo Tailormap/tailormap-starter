@@ -12,7 +12,7 @@ WORKDIR /app
 
 COPY ./package.json /app
 COPY ./package-lock.json /app
-COPY .npmrc /app
+
 RUN npm install
 
 COPY . /app
