@@ -3,14 +3,22 @@
 Use this project when you want to extend the Tailormap viewer with extra functionality. You can fork this repository to get started!
 
 ## Public extensions
+
 You can create a fork of this project to create a public repository with your extensions. Remember to [keep your fork in sync](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) to get
 updates from this repository (this may include dependency or other updates).
 
 ## Closed source extensions
+
 The license of this project and dependencies allows closed-source modifications and extensions. You can create a new _private_ repository
 using this as a template. To keep your private repository in sync, add a new Git remote to this repository and merge changes from the
-remote. Note that even if you create a private repository, if you deploy the result online anyone can see and try to de-obfuscate the
-JavaScript source code and TypeScript source maps are available by default (you can change that in angular.json).
+remote.
+
+### Keeping sources hidden
+
+If you create a private repository, when you deploy the result online on a public site anyone can see and try to de-obfuscate the JavaScript
+source code (even when all applications require login). The TypeScript source maps are generated but the Tailormap API webserver will not
+send these by default. The `SOURCE_MAP_AUTH` environment variable can be set to `public` to allow anyone to read source maps or `user:pass`
+for source maps secured with HTTP Basic authentication.
 
 ## Keeping in sync
 
