@@ -1,4 +1,3 @@
-ARG BUILDPLATFORM=linux/amd64
 ARG API_VERSION=snapshot
 
 FROM node:22.13.0 AS builder
@@ -20,6 +19,6 @@ COPY . /app
 RUN npx tm-add-ng-libraries
 RUN npm run build -- --app=${ANGULAR_APP} --base-href=${BASE_HREF} --rename-to-app
 
-FROM --platform=$BUILDPLATFORM ghcr.io/tailormap/tailormap-api:${API_VERSION}
+FROM ghcr.io/tailormap/tailormap-api:${API_VERSION}
 
 COPY --from=builder /app/dist/app static/
