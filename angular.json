@@ -90,7 +90,10 @@
               "color-name",
               "localforage",
               "fastpriorityqueue",
-              "color-convert"
+              "color-convert",
+              "lodash.debounce",
+              "lodash.throttle",
+              "extend"
             ],
             "i18nMissingTranslation": "error",
             "browser": "projects/app/src/main.ts"
