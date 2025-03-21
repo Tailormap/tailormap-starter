@@ -159,10 +159,11 @@
           "builder": "ng-extract-i18n-merge:ng-extract-i18n-merge",
           "configurations": {},
           "options": {
-            "browserTarget": "app:build",
+            "buildTarget": "app:build",
             "format": "xlf",
             "outputPath": "locale",
             "sourceFile": "messages.en.xlf",
+            "builderI18n": "@angular/build:extract-i18n",
             "verbose": false,
             "resetTranslationState": false,
             "sort": "idAsc",
