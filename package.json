@@ -19,7 +19,8 @@
     "@tailormap-viewer/api": "12.1.0-rc.2",
     "@tailormap-viewer/core": "12.1.0-rc.2",
     "@tailormap-viewer/map": "12.1.0-rc.2",
-    "@tailormap-viewer/shared": "12.1.0-rc.2"
+    "@tailormap-viewer/shared": "12.1.0-rc.2",
+    "zone.js": "^0.15.0"
   },
   "devDependencies": {
     "@angular-eslint/builder": "^20.1.1",
