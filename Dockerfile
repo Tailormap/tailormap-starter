@@ -1,6 +1,6 @@
 ARG API_VERSION=snapshot
 
-FROM node:22.17.0 AS builder
+FROM node:22.18.0 AS builder
 
 ARG BASE_HREF=/
 ARG ADD_NG_LIBRARIES
