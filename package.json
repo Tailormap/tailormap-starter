@@ -14,12 +14,12 @@
   },
   "private": true,
   "dependencies": {
-    "@tailormap-admin/admin-api": "12.3.0",
-    "@tailormap-admin/admin-core": "12.3.0",
-    "@tailormap-viewer/api": "12.3.0",
-    "@tailormap-viewer/core": "12.3.0",
-    "@tailormap-viewer/map": "12.3.0",
-    "@tailormap-viewer/shared": "12.3.0"
+    "@tailormap-admin/admin-api": "12.4.0-rc.0",
+    "@tailormap-admin/admin-core": "12.4.0-rc.0",
+    "@tailormap-viewer/api": "12.4.0-rc.0",
+    "@tailormap-viewer/core": "12.4.0-rc.0",
+    "@tailormap-viewer/map": "12.4.0-rc.0",
+    "@tailormap-viewer/shared": "12.4.0-rc.0"
   },
   "devDependencies": {
     "@angular-eslint/builder": "^20.1.1",
