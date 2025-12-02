@@ -42,6 +42,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "externalDependencies": [ "canvg" ],
             "outputPath": {
               "base": "dist/app"
             },
@@ -166,7 +167,16 @@
             }
           },
           "options": {
-            "proxyConfig": "proxy.config.js"
+            "proxyConfig": "proxy.config.js",
+            "prebundle": {
+              "exclude": [
+                "@tailormap-viewer/core",
+                "@tailormap-viewer/map",
+                "@tailormap-viewer/shared",
+                "@tailormap-admin/admin-core"
+              ]
+            }
+
           },
           "defaultConfiguration": "development"
         },
