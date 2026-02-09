@@ -21,4 +21,4 @@ RUN npm run build -- --app=${ANGULAR_APP} --base-href=${BASE_HREF} --rename-to-a
 
 FROM ghcr.io/tailormap/tailormap-api:${API_VERSION}
 
-COPY --from=builder /app/dist/app static/
+COPY --from=builder /app/dist/app /home/cnb/static/
