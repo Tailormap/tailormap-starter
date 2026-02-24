@@ -3,6 +3,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "isolatedModules": true,
+    "preserveSymlinks": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
