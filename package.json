@@ -19,12 +19,12 @@
     "@angular/forms": "^22.1.6",
     "@angular/platform-browser": "^22.1.6",
     "@angular/router": "^22.1.6",
-    "@tailormap-admin/admin-api": "12.9.2",
-    "@tailormap-admin/admin-core": "12.9.2",
-    "@tailormap-viewer/api": "12.9.2",
-    "@tailormap-viewer/core": "12.9.2",
-    "@tailormap-viewer/map": "12.9.2",
-    "@tailormap-viewer/shared": "12.9.2",
+    "@tailormap-admin/admin-api": "12.9.3",
+    "@tailormap-admin/admin-core": "12.9.3",
+    "@tailormap-viewer/api": "12.9.3",
+    "@tailormap-viewer/core": "12.9.3",
+    "@tailormap-viewer/map": "12.9.3",
+    "@tailormap-viewer/shared": "12.9.3",
     "zone.js": "^0.16.3"
   },
   "devDependencies": {
